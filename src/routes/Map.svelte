@@ -121,29 +121,18 @@ async function addAllMarkers() {
   width: 100%;
 }
 
-.marker {
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  background-color: rgb(83, 126, 255);
-  opacity: .9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
 .dot {
   border: 1px solid black;
-  background-color: rgb(190, 203, 250);
+  background-color: white;
   text-decoration: none;
   color: rgb(0, 0, 0);
-  font-size: 12pt;
-  font-family:Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   letter-spacing: .5px;
   padding-left: .5rem;
   padding-right: .5rem;
   border-radius: 3px;
+  max-width: 15rem;
 }
 
 </style>

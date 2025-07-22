@@ -153,6 +153,8 @@
                 <Textarea type="text" id="about" placeholder="About" required bind:value={about}></Textarea>
             </div>
 
+            <!-- Add more data fields (not used / necessary for now!) -->
+
             <!-- {#each Array.from({ length: dataCount }) as _, i}
                 <div class="sm:col-span-2">
                     <Label for="data-label-{i+1}" class="mb-2">Data Label {i+1}</Label>

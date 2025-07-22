@@ -9,7 +9,13 @@ export async function loadAllImages() {
         //@ts-ignore
         imageIds = await getDocuments("murals"); // get the ids for each image folder name.
 
-        for (let i = 0; i < imageIds.length; i++) { // loop through each name to store the img src in localStorage.
+        const imgIdLen = imageIds.length;
+        let maxLoad = 5;
+        // if (imgIdLen > 5) {
+
+        // }
+
+        for (let i = 0; i < maxLoad; i++) { // loop through each name to store the img src in localStorage.
             const imgSrc = await getImage(imageIds[i].id);
             // @ts-ignore
             allImages[imageIds[i].id] = imgSrc;
