@@ -15,7 +15,7 @@ export async function loadAllImages() {
 
         // }
 
-        for (let i = 0; i < maxLoad; i++) { // loop through each name to store the img src in localStorage.
+        for (let i = 0; i < imgIdLen; i++) { // loop through each name to store the img src in localStorage.
             const imgSrc = await getImage(imageIds[i].id);
             // @ts-ignore
             allImages[imageIds[i].id] = imgSrc;
