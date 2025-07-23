@@ -14,10 +14,13 @@
 
     let showImgModal = writable(false);
     let showAddLoc = writable(false);
+    let showBigImg = writable(false);
 
     let images = [];
 
     let categories = [];
+
+    let bigImgUrl = "";
 
     onMount(async () => {
 
@@ -65,6 +68,10 @@
     }
 </style>
 
+<Modal class="min-w-full" open={$showBigImg} on:close={() => {showBigImg.set(false); }} size="xl">
+    <img on:click={() => {showBigImg.set(false);}} style="border-radius:5px" src={bigImgUrl} alt="david-fichter-mural">
+</Modal>
+
 <Modal class="min-w-full" open={$showAddLoc} on:close={() => {showAddLoc.set(false); }} size="xl">
     <AddLocForm addEdit={"Edit"} editVal={mapData}></AddLocForm>
 </Modal>
@@ -95,7 +102,7 @@
             {#each images as i}
 
                 <div class="indimgwrapper">
-                    <img style="border-radius:5px" src={i} alt="david-fichter-mural">
+                    <img on:click={() => {bigImgUrl = i; showBigImg.set(true);}} style="border-radius:5px; cursor:pointer;" src={i} alt="david-fichter-mural">
                 </div>
 
             {/each}

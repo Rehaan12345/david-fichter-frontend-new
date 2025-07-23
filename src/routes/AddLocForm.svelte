@@ -20,9 +20,9 @@
     let selectedCat = "murals";
     
     const addCoorList = [{value: "add", name: "Address"}, {value: "coor", name: "Coordinates"}];
-    let addCoor = "Address";
+    let addCoor = "add";
 
-    let addLoc = "";
+    let addLoc = "add";
 
     let title = "";
 
@@ -40,6 +40,7 @@
 
     const addLocation = async () => {
         loading.set(true);
+        addCoor = "add"; // DELETE WHEN PUTTING SELECT FOR COORDS BACK!
         let newLoc = true;
         if (addEdit == "Edit") newLoc = false;
         try {
@@ -53,6 +54,7 @@
                 About: about,
                 docId: imgFolderId
             }
+            console.log(toSend);
             imgFolderId = await getAddLocation(toSend);
             successMessage.set("Successfully " + addEdit + "ed location. Add pictures below.");
         } catch (error) {
@@ -127,7 +129,7 @@
         </h2>
 
         <form on:submit={() => {addLocation()}}>
-            <div class="w-full">
+            <!-- <div class="w-full">
                 <Label>
                     Address or Coordinates
                     <Select class="mt-2" items={addCoorList} bind:value={addCoor}/>
@@ -143,7 +145,11 @@
                     <Label for="coordinates" class="mb-2">Coordinates</Label>
                     <Input type="text" id="coordinates" placeholder="12345, 6789" required bind:value={addLoc}/>
                 </div>
-            {/if}
+            {/if} -->
+            <div class="w-full">
+                    <Label for="address" class="mb-2">Address</Label>
+                    <Input type="text" id="address" placeholder="123St Apt2" required bind:value={addLoc}/>
+                </div>
             <div class="w-full">
                 <Label for="title" class="mb-2">Title</Label>
                 <Input type="text" id="title" placeholder="Title" required bind:value={title}/>

@@ -2,7 +2,7 @@
     // @ts-nocheck
     import Map from "./Map.svelte";
     import { addDocument, getScrape, getDocuments } from "$lib/model";
-	import { ButtonGroup, Button, Modal, Alert, Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from "flowbite-svelte";
+	import { ButtonGroup, Button, Modal, Alert, Dropdown, DropdownItem, DropdownDivider, DropdownHeader, Progressbar, Spinner, Popover } from "flowbite-svelte";
     import { writable } from "svelte/store";
     import ScrapeForm from "./ScrapeForm.svelte";
     import { ChevronDownOutline } from "flowbite-svelte-icons";
@@ -10,6 +10,7 @@
 	import { collection } from "firebase/firestore";
     import AddLocForm from "./AddLocForm.svelte";
     import { loadAllImages } from "$lib/cache";
+    import { sineOut } from "svelte/easing";
 
     let ready = writable(false);
     let showScrape = writable(false);
@@ -27,7 +28,9 @@
 
     let data;
 
-    let categories = []
+    let categories = [];
+
+    let progress = "50";
 
     const submit = async () => {
         const xcord = coords.substring(0, coords.indexOf(","));
@@ -129,6 +132,13 @@
                 <Map useCategory={c}></Map>
             {/if}
         {/each}
+    </div>
+
+{:else}
+
+    <div class="progressbarcontainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%">
+        Loading all murals and mosaics ... 
+        <Spinner size={5} color="green"></Spinner>
     </div>
 
 {/if}

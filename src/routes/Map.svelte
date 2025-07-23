@@ -11,7 +11,7 @@ import Overlay from 'ol/Overlay.js';
 import { addDocument, getDocuments } from '$lib/model';
 import { writable } from 'svelte/store';
 import { tick } from 'svelte';
-import { Modal, Spinner, Avatar } from 'flowbite-svelte';
+import { Modal, Spinner, Avatar, Popover, Button } from 'flowbite-svelte';
 import MapModal from './MapModal.svelte';
 import { HomeOutline } from "flowbite-svelte-icons"
 import { getCachedImgs } from '$lib/cache';
@@ -109,6 +109,11 @@ async function addAllMarkers() {
   }
 }
 
+const shortAbout = (about) => {
+  if (about.length > 150) return about.substring(0, 149);
+  return about;
+}
+
 </script>
 
 <style>
@@ -135,6 +140,10 @@ async function addAllMarkers() {
   max-width: 15rem;
 }
 
+.popover {
+  z-index: 10000;
+}
+
 </style>
 
 <Modal class="min-w-full" open={$showMapModal} on:close={() => {showMapModal.set(false); }} size="xl">
@@ -147,27 +156,35 @@ async function addAllMarkers() {
 
 {#if $ready}
 
-  <div style="display: none;">
+  <!-- <div style="display: none;">
 
     <div class="overlay dot" id="home">Home</div>
     <div id="marker" title="Marker"></div>
 
+  </div> -->
+
     {#each docs as d}
 
       <button class="dot" id={d.id}>{d.title}</button>
-      <button class="profimgwrapper" style="cursor: pointer;" aria-label={d.id} id="marker-{d.id}" title={d.title} on:click={() => {console.log(d); mapData = d; showMapModal.set(true); }}>
-        <!-- <HomeOutline ></HomeOutline> -->
+      <button class="profimgwrapper" style="cursor: pointer;" aria-label={d.id} id="marker-{d.id}" title={d.title} on:click={() => {mapData = d; showMapModal.set(true);}}>
         {#if imgs}
 
           <Avatar src={imgs[d.id][0]} />
 
         {/if}
       </button>
+      <Popover class="w-64 text-sm font-light popover" title={d.title}>
+        <p style="color: black;">{d.Location}</p>
+        <hr style="margin-top: .5rem; margin-bottom: .5rem;">
+        {shortAbout(d.About)} ...
+        <button style="color: black; cursor:pointer" on:click={() => {mapData = d; showMapModal.set(true);}}>Read more</button>
+        <img style="cursor: pointer;" on:click={() => {mapData = d; showMapModal.set(true);}} src={imgs[d.id][0]} class="col-span-2 h-full rounded-e-lg" alt="MuralPicture" />
+      </Popover>
+
       
     {/each}
     
 
-  </div>
 
 {:else}
 
