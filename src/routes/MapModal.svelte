@@ -22,6 +22,8 @@
 
     let bigImgUrl = "";
 
+    let columns;
+
     onMount(async () => {
 
         console.log(mapData);

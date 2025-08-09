@@ -151,5 +151,25 @@ export async function deleteDoc(docId) {
   });
 
   const data = await response.json();
-  console.log(data);
+}
+
+/**
+ * @param {any} pass
+ */
+export async function checkPass(pass) {
+  const toSend = {
+    checkPass: pass
+  }
+
+  const url = URL + "check-pass";
+
+  const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json'}, // Important to include the headers!
+      body: JSON.stringify(toSend)
+  });
+
+  const data = await response.json();
+  console.log(data, data.status);
+  return data.status;
 }

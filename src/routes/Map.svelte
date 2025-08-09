@@ -132,7 +132,7 @@ const shortAbout = (about) => {
   text-decoration: none;
   color: rgb(0, 0, 0);
   font-size: 10pt;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
   letter-spacing: .5px;
   padding-left: .5rem;
   padding-right: .5rem;
