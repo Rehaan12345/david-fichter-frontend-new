@@ -14,6 +14,7 @@
     import Footer from "./Footer.svelte";
 
     let ready = writable(false);
+    let showWhole = writable(false);
     let showScrape = writable(false);
     let showAddLoc = writable(false);
 
@@ -106,9 +107,16 @@
         bottom: 0;
     }
 
+    .intro-text-wrapper {
+        margin: 5rem;
+        padding: 3rem;
+        background-color: rgb(239, 236, 233);
+        border-radius: 15px;
+    }
+
 </style>
 
-{#if $ready}
+{#if $showWhole}
 
     <Modal class="min-w-full" open={$showScrape} on:close={() => {showScrape.set(false); }} size="xl">
         
@@ -142,11 +150,32 @@
 
 {:else}
 
-    <div class="progressbarcontainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%">
-        Loading all murals and mosaics ... 
-        <Spinner size={5} color="green"></Spinner>
-    </div>
+    <div class="intro-text-wrapper">
+        <p class="text-md dark:text-white">
+            This site records local artist David Fichter's many murals and mosaics. Over the last 40 years he has colored the streets of Cambridge and Somerville with vibrant, community-centered murals stemming from large 50 feet pieces to smaller mosaics. He works with local students, artists, and residents to create unique pieces that record the history, traditions, values, and beauty of our city.
+            <br><br>
+            To view information on each mural, click on the circle icon to read brief descriptions and view photos in large detail.
+            <br><br>
+            This is an ongoing project, with murals continuously being added by David. Not every mural is represented, and more can be found on David's personal website <u><a href="http://www.davidfichter.com" target="_blank">www.davidfichter.com</a></u>. This map highlights his murals done in Cambridge and Somerville, althought David's work is seen throughout the country.
+        </p>
 
+        <br>
+
+        {#if $ready}
+
+            <center>
+                <Button style="cursor:pointer;" outline color="dark" on:click={() => {showWhole.set(true);}}>View Map</Button>
+            </center>
+            
+        {:else}
+
+            <div class="progressbarcontainer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%">
+                Loading all murals and mosaics ... 
+                <Spinner size={5} color="green"></Spinner>
+            </div>
+
+        {/if}
+    </div>
 {/if}
 
 <div class="footer-wrapper">
