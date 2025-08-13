@@ -68,6 +68,67 @@
         max-height: 50%;
         padding: 1rem;
     }
+
+
+/* Small screens (phones, < 640px) */
+@media (max-width: 640px) {
+    .contentwrapper {
+        flex-direction: column; /* stack text and images */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .textwrapper {
+        min-width: unset;
+        max-width: 90%; /* take most of the width */
+        padding: 0 1rem;
+    }
+
+    .valuewrapper {
+        font-size: medium; /* slightly smaller for readability */
+        margin: 0.5rem 0;
+    }
+
+    .imgswrapper {
+        justify-content: center; /* center images */
+        flex-direction: column; /* stack if needed */
+        gap: 1rem;
+    }
+
+    .indimgwrapper {
+        min-width: 80%; /* make images bigger for mobile */
+        max-width: 90%;
+        padding: 0.5rem;
+    }
+
+    .indimgwrapper img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+/* Medium screens (tablets, 641px–900px) */
+@media (max-width: 900px) and (min-width: 641px) {
+    .contentwrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .textwrapper {
+        min-width: unset;
+        max-width: 80%;
+    }
+
+    .imgswrapper {
+        justify-content: center;
+    }
+
+    .indimgwrapper {
+        min-width: 45%;
+        max-width: 45%;
+    }
+}
 </style>
 
 <Modal class="min-w-full" open={$showBigImg} on:close={() => {showBigImg.set(false); }} size="xl">

@@ -79,7 +79,10 @@
     const handlePassCheck = async () => {
         checkingPass.set(true);
         const checkedPass = await checkPass(pass);
-        if (checkedPass == 0) showWhole.set(true);
+        if (checkedPass == 0) {
+            showWhole.set(true);
+            localStorage.setItem("password", pass);
+        }
         else showWhole.set(false);
         checkingPass.set(false);
     }
@@ -107,6 +110,13 @@
 		: editVal["id"] ?? '';
 
     onMount(async () => {
+        if (localStorage.getItem("password")) {
+            pass = localStorage.getItem("password");
+            showWhole.set(true);
+        } else {
+            localStorage.setItem("password", null);
+            showWhole.set(false);
+        }
         ready.set(true);
     });
 
