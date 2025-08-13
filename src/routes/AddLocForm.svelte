@@ -114,7 +114,6 @@
             pass = localStorage.getItem("password");
             showWhole.set(true);
         } else {
-            localStorage.setItem("password", null);
             showWhole.set(false);
         }
         ready.set(true);
