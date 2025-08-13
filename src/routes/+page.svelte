@@ -11,6 +11,7 @@
     import AddLocForm from "./AddLocForm.svelte";
     import { loadAllImages } from "$lib/cache";
     import { sineOut } from "svelte/easing";
+    import Footer from "./Footer.svelte";
 
     let ready = writable(false);
     let showScrape = writable(false);
@@ -92,7 +93,6 @@
 </script>
 
 <style>
-
     .buttongroup {
         z-index: 100;
         display: flex;
@@ -100,6 +100,12 @@
         align-items: center;
         margin-bottom: 5rem;
     }
+
+    .footer-wrapper {
+        position: fixed;
+        bottom: 0;
+    }
+
 </style>
 
 {#if $ready}
@@ -142,3 +148,7 @@
     </div>
 
 {/if}
+
+<div class="footer-wrapper">
+    <Footer></Footer>
+</div>
